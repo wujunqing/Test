@@ -7,7 +7,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 /**
- * TeradataµÄJDBC²Ù×÷daoÀà
+ * Teradataçš„JDBCæ“ä½œdaoç±»
  * 
  * @author admin
  *
@@ -17,14 +17,14 @@ public class GbaseDbDaoI extends BaseDbDaoI {
 	private static final Log log = LogFactory.getLog(GbaseDbDaoI.class);
 
 	/**
-	 * ¹¹Ôì·½·¨
+	 * æ„é€ æ–¹æ³•
 	 * 
 	 * @param url
-	 *            URLÂ·¾¶
+	 *            URLè·¯å¾„
 	 * @param userName
-	 *            ÓÃ»§Ãû
+	 *            ç”¨æˆ·å
 	 * @param passWord
-	 *            ÃÜÂë
+	 *            å¯†ç 
 	 */
 	public GbaseDbDaoI(String url, String userName, String passWord) {
 		super();
@@ -35,14 +35,14 @@ public class GbaseDbDaoI extends BaseDbDaoI {
 	}
 
 	/**
-	 * ¹¹Ôìº¯Êı
+	 * æ„é€ å‡½æ•°
 	 * 
 	 * @param url
-	 *            URLÂ·¾¶
+	 *            URLè·¯å¾„
 	 * @param userName
-	 *            ÓÃ»§Ãû
+	 *            ç”¨æˆ·å
 	 * @param passWord
-	 *            ÃÜÂë
+	 *            å¯†ç 
 	 * @param overTime
 	 */
 	public GbaseDbDaoI(String url, String userName, String passWord, int overTime) {
@@ -55,18 +55,18 @@ public class GbaseDbDaoI extends BaseDbDaoI {
 	}
 
 	/**
-	 * ¹¹Ôìº¯Êı
+	 * æ„é€ å‡½æ•°
 	 * 
 	 * @param dbName
-	 *            Êı¾İ¿âÃû
+	 *            æ•°æ®åº“å
 	 * @param ip
 	 *            IP
 	 * @param port
-	 *            ¶Ë¿Ú
+	 *            ç«¯å£
 	 * @param userName
-	 *            ÓÃ»§Ãû
+	 *            ç”¨æˆ·å
 	 * @param passWord
-	 *            ÃÜÂë
+	 *            å¯†ç 
 	 */
 	public GbaseDbDaoI(String dbName, String ip, String port, String userName, String passWord) {
 		super();
@@ -79,20 +79,20 @@ public class GbaseDbDaoI extends BaseDbDaoI {
 
 	
 	/**
-	 * ¹¹Ôìº¯Êı
+	 * æ„é€ å‡½æ•°
 	 * 
 	 * @param dbName
-	 *            Êı¾İ¿âÃû
+	 *            æ•°æ®åº“å
 	 * @param ip
 	 *            IP
 	 * @param port
-	 *            ¶Ë¿Ú
+	 *            ç«¯å£
 	 * @param userName
-	 *            ÓÃ»§Ãû
+	 *            ç”¨æˆ·å
 	 * @param passWord
-	 *            ÃÜÂë
+	 *            å¯†ç 
 	 * @param hostList
-	 *            ¼¯ÈºIPÁĞ±í
+	 *            é›†ç¾¤IPåˆ—è¡¨
 	 */
 	public GbaseDbDaoI(String dbName, String ip, String port, String userName, String passWord,String hostList) {
 		super();
@@ -104,18 +104,18 @@ public class GbaseDbDaoI extends BaseDbDaoI {
 		DRIVER = "com.gbase.jdbc.Driver";
 	}
 	/**
-	 * »ñÈ¡Á¬½Óurl
+	 * è·å–è¿æ¥url
 	 * 
 	 * @param dbName
-	 *            Êı¾İ¿âÊµÀıÃû
+	 *            æ•°æ®åº“å®ä¾‹å
 	 * @param ip
-	 *            Êı¾İ¿âip
+	 *            æ•°æ®åº“ip
 	 * @param port
-	 *            Êı¾İ¿â¶Ë¿Ú
+	 *            æ•°æ®åº“ç«¯å£
 	 * @param userName
-	 *            ÓÃ»§Ãû
+	 *            ç”¨æˆ·å
 	 * @param passWord
-	 *            ÃÜÂë
+	 *            å¯†ç 
 	 * @return
 	 */
 	public String getUrl(String dbName, String ip, String port,String hostList) {
@@ -130,18 +130,18 @@ public class GbaseDbDaoI extends BaseDbDaoI {
 	}
 	
 	/**
-	 * »ñÈ¡Á¬½Óurl
+	 * è·å–è¿æ¥url
 	 * 
 	 * @param dbName
-	 *            Êı¾İ¿âÊµÀıÃû
+	 *            æ•°æ®åº“å®ä¾‹å
 	 * @param ip
-	 *            Êı¾İ¿âip
+	 *            æ•°æ®åº“ip
 	 * @param port
-	 *            Êı¾İ¿â¶Ë¿Ú
+	 *            æ•°æ®åº“ç«¯å£
 	 * @param userName
-	 *            ÓÃ»§Ãû
+	 *            ç”¨æˆ·å
 	 * @param passWord
-	 *            ÃÜÂë
+	 *            å¯†ç 
 	 * @return
 	 */
 	public String getUrl(String dbName, String ip, String port) {

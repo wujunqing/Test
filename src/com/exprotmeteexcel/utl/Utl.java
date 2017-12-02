@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 /** 
- * ¹¤¾ßÀà. 
+ * å·¥å…·ç±». 
  *  
  * @author wujunqing
  * @date 2017-06-26 
@@ -39,11 +39,11 @@ public class Utl {
 
 	public static List<List<Map<String, Object>>> createList(List<Map<String, Object>> targe, int size) {
 		List<List<Map<String, Object>>> listArr = new ArrayList<List<Map<String, Object>>>();
-		// »ñÈ¡±»²ğ·ÖµÄÊı×é¸öÊı
+		// è·å–è¢«æ‹†åˆ†çš„æ•°ç»„ä¸ªæ•°
 		int arrSize = targe.size() % size == 0 ? targe.size() / size : targe.size() / size + 1;
 		for (int i = 0; i < arrSize; i++) {
 			List<Map<String, Object>> sub = new ArrayList<Map<String, Object>>();
-			// °ÑÖ¸¶¨Ë÷ÒıÊı¾İ·ÅÈëµ½listÖĞ
+			// æŠŠæŒ‡å®šç´¢å¼•æ•°æ®æ”¾å…¥åˆ°listä¸­
 			for (int j = i * size; j <= size * (i + 1) - 1; j++) {
 				if (j <= targe.size() - 1) {
 					sub.add(targe.get(j));

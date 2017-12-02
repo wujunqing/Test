@@ -21,18 +21,18 @@ import org.apache.commons.logging.LogFactory;
 import com.exprotmeteexcel.dao.BaseDbDao;
 
 /**
- * SQLµÄdaoÀà£¬´´½¨/¹Ø±ÕÁ¬½Ó£¬Ö´ĞĞ½Å±¾
+ * SQLçš„daoç±»ï¼Œåˆ›å»º/å…³é—­è¿æ¥ï¼Œæ‰§è¡Œè„šæœ¬
  * 
  * @author admin
  * 
  */
 
 public abstract class BaseDbDaoI implements BaseDbDao {
-	protected String db_url = "";// Á¬½Ó×Ö·û´®
-	protected String db_userName = "";// ÓÃ»§Ãû
-	protected String db_userPass = "";// ÓÃ»§ÃÜÂë
-	protected int db_overtime = 10;// Ãë
-	protected String db_ssid = "";// Êı¾İ¿âÊµÀı
+	protected String db_url = "";// è¿æ¥å­—ç¬¦ä¸²
+	protected String db_userName = "";// ç”¨æˆ·å
+	protected String db_userPass = "";// ç”¨æˆ·å¯†ç 
+	protected int db_overtime = 10;// ç§’
+	protected String db_ssid = "";// æ•°æ®åº“å®ä¾‹
 	protected int fetchSize = 1000;
 	protected String db_type = "";//
 	protected int BatchSize = 5000;
@@ -41,17 +41,17 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	private static final Log log = LogFactory.getLog(BaseDbDaoI.class);
 
 	/**
-	 * »ñ jdbcÁ¬½Ó
+	 * è· jdbcè¿æ¥
 	 * 
 	 * @param driver
-	 *            £ºÇı¶¯
+	 *            ï¼šé©±åŠ¨
 	 * @param url
-	 *            £ºµØÖ·
+	 *            ï¼šåœ°å€
 	 * @param username
-	 *            £ºÓÃ»§Ãû
+	 *            ï¼šç”¨æˆ·å
 	 * @param password
-	 *            £ºÃÜÂë
-	 * @return ·µ»ØÁ¬½ÓÆ÷
+	 *            ï¼šå¯†ç 
+	 * @return è¿”å›è¿æ¥å™¨
 	 * @throws ClassNotFoundException
 	 * @throws SQLException
 	 */
@@ -85,14 +85,14 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * ¹Ø±ÕÁ¬½Ó
+	 * å…³é—­è¿æ¥
 	 * 
 	 * @param conn
-	 *            £ºÁ¬½ÓÆ÷
+	 *            ï¼šè¿æ¥å™¨
 	 * @param stmt
-	 *            £ºÊı¾İ¿âÓï¾ä·¢ËÍ¶ÔÏó
+	 *            ï¼šæ•°æ®åº“è¯­å¥å‘é€å¯¹è±¡
 	 * @param rs
-	 *            £º½á¹û¼¯
+	 *            ï¼šç»“æœé›†
 	 */
 	public static void closeAll(Connection conn, Statement stmt, ResultSet rs) {
 		try {
@@ -100,26 +100,26 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				rs.close();
 			}
 		} catch (Exception e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		}
 		try {
 			if (stmt != null) {
 				stmt.close();
 			}
 		} catch (Exception e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		}
 		try {
 			if (conn != null && !conn.isClosed()) {
 				conn.close();
 			}
 		} catch (Exception e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		}
 	}
 
 	/**
-	 * ÓÃÓÚÖ´ĞĞ INSERT¡¢UPDATE »ò DELETE Óï¾ä
+	 * ç”¨äºæ‰§è¡Œ INSERTã€UPDATE æˆ– DELETE è¯­å¥
 	 * 
 	 * @param sql
 	 * @param param
@@ -132,7 +132,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		boolean rs = false;
 		try {
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞSQL£º" + sql);
+			log.info("æ‰§è¡ŒSQLï¼š" + sql);
 			conn = getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setFetchSize(fetchSize);
@@ -142,10 +142,10 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				}
 			}
 			rs = ps.execute();
-			log.info("Ö´ĞĞSQLºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡ŒSQLè€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 
 		} catch (SQLException e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(conn, ps, null);
 		}
@@ -153,7 +153,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * ÓÃÓÚÖ´ĞĞ INSERT¡¢UPDATE »ò DELETE Óï¾ä
+	 * ç”¨äºæ‰§è¡Œ INSERTã€UPDATE æˆ– DELETE è¯­å¥
 	 * 
 	 * @param sql
 	 * @param param
@@ -165,7 +165,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		boolean rs = false;
 		try {
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞSQL£º" + sql);
+			log.info("æ‰§è¡ŒSQLï¼š" + sql);
 			ps = conn.prepareStatement(sql);
 			ps.setFetchSize(fetchSize);
 			if (param != null) {
@@ -174,10 +174,10 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				}
 			}
 			rs = ps.execute();
-			log.info("Ö´ĞĞSQLºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡ŒSQLè€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 
 		} catch (SQLException e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(conn, ps, null);
 		}
@@ -185,7 +185,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * ÓÃÓÚÖ´ĞĞ INSERT¡¢UPDATE »ò DELETE Óï¾äÒÔ¼° SQL DDL£¨Êı¾İ¶¨ÒåÓïÑÔ£©Óï¾ä
+	 * ç”¨äºæ‰§è¡Œ INSERTã€UPDATE æˆ– DELETE è¯­å¥ä»¥åŠ SQL DDLï¼ˆæ•°æ®å®šä¹‰è¯­è¨€ï¼‰è¯­å¥
 	 * 
 	 * @param sql
 	 * @param param
@@ -198,7 +198,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		int rs = 0;
 		try {
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞSQL£º" + sql);
+			log.info("æ‰§è¡ŒSQLï¼š" + sql);
 			conn = getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setFetchSize(fetchSize);
@@ -208,11 +208,11 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				}
 			}
 			rs = ps.executeUpdate();
-			log.info("Ö´ĞĞSQLºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡ŒSQLè€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 			return rs;
 
 		} catch (SQLException e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(conn, ps, null);
 		}
@@ -220,7 +220,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * ÆÕÍ¨sql²éÑ¯
+	 * æ™®é€šsqlæŸ¥è¯¢
 	 * 
 	 * @param sql
 	 * @param param
@@ -234,7 +234,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		ResultSet rs = null;
 		try {
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞSQL£º" + sql);
+			log.info("æ‰§è¡ŒSQLï¼š" + sql);
 
 			conn = getConnection();
 			ps = conn.prepareStatement(sql);
@@ -268,10 +268,10 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				results.add(map);
 			}
 
-			log.info("Ö´ĞĞSQLºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡ŒSQLè€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 
 		} catch (SQLException e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(conn, ps, rs);
 		}
@@ -279,7 +279,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * ÆÕÍ¨sql²éÑ¯
+	 * æ™®é€šsqlæŸ¥è¯¢
 	 * 
 	 * @param sql
 	 * @param param
@@ -292,7 +292,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		ResultSet rs = null;
 		try {
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞSQL£º" + sql);
+			log.info("æ‰§è¡ŒSQLï¼š" + sql);
 
 			ps = conn.prepareStatement(sql);
 			ps.setFetchSize(fetchSize);
@@ -327,10 +327,10 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				results.add(map);
 			}
 
-			log.info("Ö´ĞĞSQLºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡ŒSQLè€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 
 		} catch (SQLException e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(null, ps, rs);
 		}
@@ -339,13 +339,13 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * Ö´ĞĞsqlÓï¾äµÄÔöÉ¾¸Ä
+	 * æ‰§è¡Œsqlè¯­å¥çš„å¢åˆ æ”¹
 	 * 
 	 * @param sql
-	 *            SQL½Å±¾
+	 *            SQLè„šæœ¬
 	 * @param param
-	 *            ×¢Èë²ÎÊı
-	 * @return Ó°Ïìº¯Êı
+	 *            æ³¨å…¥å‚æ•°
+	 * @return å½±å“å‡½æ•°
 	 * @throws SQLException
 	 */
 	public Integer executeSQL(String sql, String[] param) throws SQLException {
@@ -355,7 +355,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		ResultSet rs = null;
 		try {
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞSQL£º" + sql);
+			log.info("æ‰§è¡ŒSQLï¼š" + sql);
 
 			conn = getConnection();
 			pst = (PreparedStatement) conn.prepareStatement(sql);
@@ -365,15 +365,15 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				}
 			}
 			result = pst.executeUpdate();
-			conn.commit();// Ìá½»ÊÂÎñ
+			conn.commit();// æäº¤äº‹åŠ¡
 
-			log.info("Ö´ĞĞSQL Ê±¼ä£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡ŒSQL æ—¶é—´ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 
 		} catch (SQLException e) {
 			if (conn != null) {
 				conn.rollback();
-			} // »Ø¹öÊÂÎñ
-			log.error("Ö´ĞĞsql·¢ÉúÒì³££º" + e.toString());
+			} // å›æ»šäº‹åŠ¡
+			log.error("æ‰§è¡Œsqlå‘ç”Ÿå¼‚å¸¸ï¼š" + e.toString());
 		} finally {
 			closeAll(conn, pst, rs);
 		}
@@ -381,11 +381,11 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * Åú´¦ÀíµÄÔöÉ¾¸Ä
+	 * æ‰¹å¤„ç†çš„å¢åˆ æ”¹
 	 * 
 	 * @param sqls
-	 *            ½Å±¾Êı×é
-	 * @return Ó°Ïìº¯Êı
+	 *            è„šæœ¬æ•°ç»„
+	 * @return å½±å“å‡½æ•°
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
@@ -396,11 +396,11 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		ResultSet rs = null;
 		try {
 			long d1 = System.currentTimeMillis();
-			log.info("ÅúÁ¿Ö´ĞĞSQL×ÜÊı£º" + sqls.length);
+			log.info("æ‰¹é‡æ‰§è¡ŒSQLæ€»æ•°ï¼š" + sqls.length);
 			conn = getConnection();
 			pst = (PreparedStatement) conn.createStatement();
 			for (String sql : sqls) {
-				log.info("ÅúÁ¿Ö´ĞĞSQL£º" + sql);
+				log.info("æ‰¹é‡æ‰§è¡ŒSQLï¼š" + sql);
 				pst.addBatch(sql);
 			}
 			int[] resultArray = pst.executeBatch();
@@ -412,13 +412,13 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 			if (result > 0) {
 				conn.commit();
 			}
-			log.info("ÅúÁ¿Ö´ĞĞSQLºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰¹é‡æ‰§è¡ŒSQLè€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 
 		} catch (SQLException e) {
 			if (conn != null) {
 				conn.rollback();
 			}
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(conn, pst, rs);
 		}
@@ -427,13 +427,13 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * Ö´ĞĞ´æ´¢¹ı³ÌµÄÔöÉ¾¸Ä
+	 * æ‰§è¡Œå­˜å‚¨è¿‡ç¨‹çš„å¢åˆ æ”¹
 	 * 
 	 * @param sql
-	 *            Ö´ĞĞ´æ´¢¹ı³ÌµÄSQL½Å±¾
+	 *            æ‰§è¡Œå­˜å‚¨è¿‡ç¨‹çš„SQLè„šæœ¬
 	 * @param param
-	 *            ×¢Èë²ÎÊı
-	 * @return Ó°ÏìĞĞÊı
+	 *            æ³¨å…¥å‚æ•°
+	 * @return å½±å“è¡Œæ•°
 	 * @throws SQLException
 	 * @throws ClassNotFoundException
 	 */
@@ -446,7 +446,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		try {
 
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞ ´æ´¢¹ı³ÌSQL£º" + sql);
+			log.info("æ‰§è¡Œ å­˜å‚¨è¿‡ç¨‹SQLï¼š" + sql);
 
 			conn = getConnection();
 			cs = (CallableStatement) conn.prepareCall(sql);
@@ -456,15 +456,15 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				}
 			}
 			result = cs.executeUpdate();
-			conn.commit();// Ìá½»ÊÂÎñ
+			conn.commit();// æäº¤äº‹åŠ¡
 
-			log.info("Ö´ĞĞ´æ´¢¹ı³ÌºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡Œå­˜å‚¨è¿‡ç¨‹è€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 
 		} catch (SQLException e) {
 			if (conn != null) {
 				conn.rollback();
-			} // »Ø¹öÊÂÎñ
-			log.error("´íÎóĞÅÏ¢", e);
+			} // å›æ»šäº‹åŠ¡
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(conn, pst, rs);
 		}
@@ -472,7 +472,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * »ñÊı¾İ×ªÎªmap
+	 * è·æ•°æ®è½¬ä¸ºmap
 	 * 
 	 * @param sql
 	 * @return
@@ -486,7 +486,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		try {
 
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞ SQL£º" + sql);
+			log.info("æ‰§è¡Œ SQLï¼š" + sql);
 
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -502,11 +502,11 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				list.add(rowData);
 			}
 
-			log.info("Ö´ĞĞ SQLºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡Œ SQLè€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 
 		} catch (Exception e) {
-			log.error(System.currentTimeMillis() + "getDateForMapStr·½·¨£¬Ö´ĞĞsql£º" + sql);
-			log.error(System.currentTimeMillis() + "Òì³£Ô­Òò£º" + e.toString());
+			log.error(System.currentTimeMillis() + "getDateForMapStræ–¹æ³•ï¼Œæ‰§è¡Œsqlï¼š" + sql);
+			log.error(System.currentTimeMillis() + "å¼‚å¸¸åŸå› ï¼š" + e.toString());
 		} finally {
 			closeAll(conn, pstmt, rs);
 		}
@@ -514,7 +514,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * »ñÊı¾İ×ªÎªmap
+	 * è·æ•°æ®è½¬ä¸ºmap
 	 * 
 	 * @param sql
 	 * @return
@@ -527,7 +527,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		try {
 
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞ SQL£º" + sql);
+			log.info("æ‰§è¡Œ SQLï¼š" + sql);
 
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -546,9 +546,9 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				}
 				list.add(rowData);
 			}
-			log.info("Ö´ĞĞSQL ºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡ŒSQL è€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 		} catch (Exception e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(conn, pstmt, rs);
 		}
@@ -563,7 +563,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		try {
 
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞ SQL£º" + sql);
+			log.info("æ‰§è¡Œ SQLï¼š" + sql);
 
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -577,9 +577,9 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 				}
 				list.add(rowData);
 			}
-			log.info("Ö´ĞĞSQL ºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡ŒSQL è€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 		} catch (Exception e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(conn, pstmt, rs);
 		}
@@ -587,7 +587,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 	}
 
 	/**
-	 * »ñÊı¾İÊıÁ¿
+	 * è·æ•°æ®æ•°é‡
 	 * 
 	 * @param sql
 	 * @return
@@ -599,7 +599,7 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 		PreparedStatement pstmt = null;
 		try {
 			long d1 = System.currentTimeMillis();
-			log.info("Ö´ĞĞ SQL£º" + sql);
+			log.info("æ‰§è¡Œ SQLï¼š" + sql);
 
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -607,9 +607,9 @@ public abstract class BaseDbDaoI implements BaseDbDao {
 			if (rs.next()) {
 				count = rs.getInt("count");
 			}
-			log.info("Ö´ĞĞSQLºÄÊ±£º" + (System.currentTimeMillis() - d1) + "ºÁÃë");
+			log.info("æ‰§è¡ŒSQLè€—æ—¶ï¼š" + (System.currentTimeMillis() - d1) + "æ¯«ç§’");
 		} catch (Exception e) {
-			log.error("´íÎóĞÅÏ¢", e);
+			log.error("é”™è¯¯ä¿¡æ¯", e);
 		} finally {
 			closeAll(conn, pstmt, rs);
 		}

@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 /**
- * jdbc¹¤¾ßÀà
+ * jdbcå·¥å…·ç±»
  * 
  * @author wujunqing
  * @date 2017-06-26 

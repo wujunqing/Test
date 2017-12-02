@@ -10,7 +10,7 @@ import com.exprotmeteexcel.utl.Getjdbcconfig;
 import com.exprotmeteexcel.utl.Utl;
 
 /**
- * JDBC²Ù×÷¹¤³§Àà
+ * JDBCæ“ä½œå·¥å‚ç±»
  * 
  * @author admin
  *
@@ -20,11 +20,11 @@ public class FactoryBaseDbDaoServiceImp {
 	private static final Log log = LogFactory.getLog(FactoryBaseDbDaoServiceImp.class);
 
 	/**
-	 * »ñµÃjdbcµÄDAOÀà
+	 * è·å¾—jdbcçš„DAOç±»
 	 * 
 	 * @param path
-	 *            ÅäÖÃÂ·¾¶
-	 * @return db £º
+	 *            é…ç½®è·¯å¾„
+	 * @return db ï¼š
 	 */
 	public static BaseDbDaoI getBaseDbDaoI(String path) {
 
@@ -50,11 +50,11 @@ public class FactoryBaseDbDaoServiceImp {
 	}
 
 	/**
-	 * »ñµÃjdbcµÄDAO·½·¨Àà
+	 * è·å¾—jdbcçš„DAOæ–¹æ³•ç±»
 	 * 
 	 * @param path
-	 *            ÅäÖÃÂ·¾¶
-	 * @return db £º
+	 *            é…ç½®è·¯å¾„
+	 * @return db ï¼š
 	 */
 	public static BaseDbDao getBaseDbDao(String path) {
 
